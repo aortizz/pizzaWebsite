@@ -25,7 +25,7 @@ h1, h2, h3 {
   </head>
   <body>
    
-    <div style="text-align: center;">
+   
     <img src="pizza.jpg" alt="picture of pepperoni pizza" height="300" width="300" >
     
     <h2>Order Delicious Fresh Pizza ! </h2>
@@ -50,6 +50,14 @@ h1, h2, h3 {
         <input type="checkbox" id="pineapple" name="toppings" value="pineapple">
       <label for="pineapple">Pineapple</label>
       <br><br>
+      <label for="size">Select Pizza Size:</label>
+      <input type="radio" id="small" name="size" value="small">
+      <label for="small">Small:$8</label>
+      <input type="radio" id="medium" name="size" value="medium">
+      <label for="medium">Medium:$10</label>
+       <input type="radio" id="large" name="size" value="large">
+      <label for="large">Large:$12</label>
+      <br><br>
       <label for="crust">Select Crust:</label>
       <input type="radio" id="thin" name="crust" value="thin">
       <label for="thin">Thin</label>
@@ -70,6 +78,7 @@ h1, h2, h3 {
       function validateForm() {
         var toppings = document.getElementsByName("toppings");
         var crust = document.querySelector('input[name="crust"]:checked');
+        var size = document.querySelector('input[name="size"]:checked');
         var payment = document.getElementById("payment").value;
         var toppingsChecked = false;
         for (var i = 0; i < toppings.length; i++) {
@@ -78,7 +87,7 @@ h1, h2, h3 {
             break;
           }
         }
-        if (!toppingsChecked || crust === null || payment === "") {
+        if (!toppingsChecked || crust === null || payment === "" || size === "" ) {
           document.getElementById("error").innerHTML = "Please fill in all the fields.";
           return false;
         }
