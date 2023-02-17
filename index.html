@@ -12,18 +12,27 @@
     <h2>Order Pizza</h2>
     <form onsubmit="return validateForm()">
       <label for="toppings">Select Toppings:</label>
-      <select id="toppings" name="toppings">
-        <option value="">Select Toppings</option>
-        <option value="pepperoni">Pepperoni</option>
-        <option value="mushrooms">Mushrooms</option>
-        <option value="onions">Onions</option>
-        <option value="sausage">Sausage</option>
-        <option value="bacon">Bacon</option>
-      </select>
+      <br>
+      <input type="checkbox" id="pepperoni" name="toppings" value="pepperoni">
+      <label for="pepperoni">Pepperoni</label>
+      <br>
+      <input type="checkbox" id="chicken" name="toppings" value="chicken">
+      <label for="chicken">Chicken</label>
+      <br>
+      <input type="checkbox" id="onions" name="toppings" value="onions">
+      <label for="onions">Onions</label>
+      <br>
+      <input type="checkbox" id="olives" name="toppings" value="olives">
+      <label for="olives">Olives</label>
+      <br>
+      <input type="checkbox" id="bacon" name="toppings" value="bacon">
+      <label for="bacon">Bacon</label>
       <br><br>
       <label for="crust">Select Crust:</label>
-      <input type="radio" id="crust" name="crust" value="Thin">Thin
-      <input type="radio" id="crust" name="crust" value="Thick">Thick
+      <input type="radio" id="thin" name="crust" value="thin">
+      <label for="thin">Thin</label>
+      <input type="radio" id="thick" name="crust" value="thick">
+      <label for="thick">Thick</label>
       <br><br>
       <label for="payment">Select Payment Method:</label>
       <select id="payment" name="payment">
@@ -37,10 +46,17 @@
     <p id="error" class="error"></p>
     <script>
       function validateForm() {
-        var toppings = document.getElementById("toppings").value;
-        var crust = document.querySelector('input[name="crust"]:checked').value;
+        var toppings = document.getElementsByName("toppings");
+        var crust = document.querySelector('input[name="crust"]:checked');
         var payment = document.getElementById("payment").value;
-        if (toppings === "" || crust === undefined || payment === "") {
+        var toppingsChecked = false;
+        for (var i = 0; i < toppings.length; i++) {
+          if (toppings[i].checked) {
+            toppingsChecked = true;
+            break;
+          }
+        }
+        if (!toppingsChecked || crust === null || payment === "") {
           document.getElementById("error").innerHTML = "Please fill in all the fields.";
           return false;
         }
